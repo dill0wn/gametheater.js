@@ -1,4 +1,4 @@
-import { Circle, Point, Rectangle } from "./node_modules/pixi.js/dist/browser/pixi.mjs";
+import { Circle, Point, Rectangle } from "pixi.js";
 
 export class Collisions {
     /**

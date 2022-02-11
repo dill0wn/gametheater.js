@@ -1,5 +1,5 @@
 import { Delay } from "./delay.js";
-import { Container } from "./node_modules/pixi.js/dist/browser/pixi.mjs";
+import { Container } from "pixi.js";
 import { gfObject } from "./object.js";
 
 export class GameObject extends gfObject {

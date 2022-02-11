@@ -1,4 +1,4 @@
-import { Application } from "./node_modules/pixi.js/dist/browser/pixi.mjs";
+import { Application } from "pixi.js";
 import { gfObject } from "./object.js";
 
 export class BaseGame extends gfObject {
