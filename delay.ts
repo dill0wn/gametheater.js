@@ -1,10 +1,10 @@
-import { gfObject } from "./object.js";
+import { gfObject } from "./object";
 
 export class Delay extends gfObject {
 
-    timeoutHandle;
+    timeoutHandle: number = -1;
 
-    onCreate(callback, seconds) {
+    onCreate(callback: Function, seconds: number) {
         super.onCreate();
         this.timeoutHandle = setTimeout(() => {
             callback()

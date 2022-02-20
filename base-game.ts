@@ -1,9 +1,8 @@
 import { Application } from "pixi.js";
-import { gfObject } from "./object.js";
+import { gfObject } from "./object";
 
 export class BaseGame extends gfObject {
-    /** @type { Application } */
-    app;
+    app: Application;
 
     constructor() {
         super();

@@ -1,10 +1,9 @@
-import { Delay } from "./delay.js";
+import { Delay } from "./delay";
 import { Container } from "pixi.js";
-import { gfObject } from "./object.js";
+import { gfObject } from "./object";
 
 export class GameObject extends gfObject {
-    /** @type { Container } */
-    content;
+    content: Container;
 
     get position() {
         return this.content.position;
