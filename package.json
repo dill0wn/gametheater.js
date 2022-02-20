@@ -9,12 +9,13 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "peerDependencies": {
     "pixi.js": "^6.2.2"
   },
   "devDependencies": {
-    "mocha": "^9.2.0",
     "canvas": "^2.9.0",
-    "jsdom": "^19.0.0"
+    "jsdom": "^19.0.0",
+    "mocha": "^9.2.0",
+    "pixi.js": "^6.2.2"
   }
 }
