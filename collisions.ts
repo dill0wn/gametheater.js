@@ -1,13 +1,8 @@
 import { Circle, Point, Rectangle } from "pixi.js";
 
 export class Collisions {
-    /**
-     * 
-     * @param { Rectangle } rectA 
-     * @param { Rectangle } rectB 
-     * @returns { CollisionOverlap | null | boolean }
-     */
-    static hitTest_RectangleRectangle(rectA, rectB, outOverlap) {
+    
+    static hitTest_RectangleRectangle(rectA: Rectangle, rectB: Rectangle, outOverlap: CollisionOverlap = null) {
 
         if (rectA.left == rectA.right || rectA.top == rectA.bottom ||
             rectB.left == rectB.right || rectB.top == rectB.bottom) {
@@ -38,7 +33,7 @@ export class Collisions {
      * @param { Circle } circle 
      * @returns { CollisionOverlap | null }
      */
-    static hitTest_RectangleCircle(rect, circle) {
+    static hitTest_RectangleCircle(rect: Rectangle, circle: Circle) {
         return null;
     }
 }

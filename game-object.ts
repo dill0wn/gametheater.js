@@ -9,7 +9,7 @@ export class GameObject extends gfObject {
         return this.content.position;
     }
 
-    onCreate() {
+    onCreate(...args) {
         super.onCreate();
         this.content = new Container();
     }

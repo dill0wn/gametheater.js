@@ -17,7 +17,7 @@ export class gfObject extends EventTarget {
         return o;
     }
 
-    onCreate() { }
+    onCreate(...args) { }
 
     onDestroy() {
         this.tick = false;
@@ -43,5 +43,5 @@ export class gfObject extends EventTarget {
         return this.#tick_enabled;
     }
 
-    onTick(delta) { }
+    onTick(delta: number) { }
 }
