@@ -3,15 +3,14 @@ import { Container } from "pixi.js";
 import { gfObject } from "./object";
 
 export class GameObject extends gfObject {
-    content: Container;
+    content: Container = new Container();
 
     get position() {
         return this.content.position;
     }
 
-    onCreate(...args) {
-        super.onCreate();
-        this.content = new Container();
+    async onCreate(...args) {
+        await super.onCreate();
     }
 
     attach(child) {

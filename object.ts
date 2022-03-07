@@ -8,11 +8,13 @@ export class gfObject extends EventTarget {
 
     _bind() { }
 
-    create(t, ...args) {
+    async create<T>(t: new() => T, ...args) {
         const o = new t();
-        o.game = this.game;
-
-        o.onCreate(...args);
+        
+        if (o instanceof gfObject) {
+            o.game = this.game;
+            await o.onCreate(...args);
+        }
 
         return o;
     }
@@ -30,7 +32,7 @@ export class gfObject extends EventTarget {
     #tick_enabled = false;
     set tick(val) {
         if (this.#tick_enabled != val) {
-            if(val) {
+            if (val) {
                 this.ticker.add(this.onTick);
             } else {
                 this.ticker.remove(this.onTick);
