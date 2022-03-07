@@ -1,8 +1,8 @@
 import { Delay } from "./delay";
 import { Container } from "pixi.js";
-import { gfObject } from "./object";
+import { SimpleObject } from "./simple-object";
 
-export class GameObject extends gfObject {
+export class GameObject extends SimpleObject {
     content: Container = new Container();
 
     get position() {

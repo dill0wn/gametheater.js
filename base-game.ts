@@ -1,7 +1,7 @@
 import { Application } from "pixi.js";
-import { gfObject } from "./object";
+import { SimpleObject } from "./simple-object";
 
-export class BaseGame extends gfObject {
+export class BaseGame extends SimpleObject {
     app: Application;
 
     constructor() {

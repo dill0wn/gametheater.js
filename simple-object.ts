@@ -1,4 +1,4 @@
-export class gfObject extends EventTarget {
+export class SimpleObject extends EventTarget {
     game;
 
     constructor() {
@@ -11,7 +11,7 @@ export class gfObject extends EventTarget {
     async create<T>(t: new() => T, ...args) {
         const o = new t();
         
-        if (o instanceof gfObject) {
+        if (o instanceof SimpleObject) {
             o.game = this.game;
             await o.onCreate(...args);
         }

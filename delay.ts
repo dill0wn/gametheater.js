@@ -1,6 +1,6 @@
-import { gfObject } from "./object";
+import { SimpleObject } from "./simple-object";
 
-export class Delay extends gfObject {
+export class Delay extends SimpleObject {
 
     timeoutHandle: number = -1;
 
