@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# link gametheater.js
+yarn link
+
+# link pixi.js
+pushd node_modules/pixi.js
+yarn link
+popd
+
+pushd node_modules/@pixi
+
+for pkg in `ls`; do
+    pushd $pkg; 
+    yarn link; 
+    popd; 
+done

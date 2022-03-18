@@ -1,5 +1,7 @@
+import { BaseGame } from "./base-game";
+
 export class SimpleObject extends EventTarget {
-    game;
+    game: BaseGame;
 
     constructor() {
         super();
