@@ -9,27 +9,31 @@ export class GameObject extends SimpleObject {
         return this.content.position;
     }
 
-    async onCreate(...args) {
+    async onCreate(...args: any[]) {
         await super.onCreate();
     }
 
-    attach(child) {
-        let cc = child;
-        if(child.content instanceof Container) {
+    attach(child: GameObject | Container) {
+        let cc: Container;
+        if(child instanceof GameObject) {
             cc = child.content;
+        } else {
+            cc = child;
         }
         this.content.addChild(cc);
     }
     
-    detach(child) {
-        let cc = child;
-        if(child.content instanceof Container) {
+    detach(child: GameObject | Container) {
+        let cc: Container;
+        if(child instanceof GameObject) {
             cc = child.content;
+        } else {
+            cc = child;
         }
         this.content.removeChild(cc);
     }
 
-    delay(callback, seconds) {
+    delay(callback: (...args:any[] ) => any, seconds: number) {
         return this.create(Delay, callback, seconds);
     }
 }

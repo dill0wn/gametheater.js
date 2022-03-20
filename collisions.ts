@@ -2,7 +2,7 @@ import { Circle, Point, Rectangle } from "pixi.js";
 
 export class Collisions {
     
-    static hitTest_RectangleRectangle(rectA: Rectangle, rectB: Rectangle, outOverlap: CollisionOverlap = null) {
+    static hitTest_RectangleRectangle(rectA: Rectangle, rectB: Rectangle, outOverlap: CollisionOverlap | null = null) {
 
         if (rectA.left == rectA.right || rectA.top == rectA.bottom ||
             rectB.left == rectB.right || rectB.top == rectB.bottom) {

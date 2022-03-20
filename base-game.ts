@@ -49,7 +49,7 @@ export class BaseGame extends SimpleObject {
         window.removeEventListener('resize', this.onResize)
     }
 
-    onTick(delta) {
+    onTick(delta: number) {
 
     }
 

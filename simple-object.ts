@@ -1,7 +1,10 @@
+import { Ticker } from "pixi.js";
 import { BaseGame } from "./base-game";
+import { EventDispatcher } from "./core/EventDispatcher";
 
-export class SimpleObject extends EventTarget {
-    game: BaseGame;
+export class SimpleObject extends EventDispatcher {
+
+    game: BaseGame | null = null;
 
     constructor() {
         super();
@@ -10,9 +13,9 @@ export class SimpleObject extends EventTarget {
 
     _bind() { }
 
-    async create<T>(t: new() => T, ...args) {
+    async create<T>(t: new () => T, ...args: any[]) {
         const o = new t();
-        
+
         if (o instanceof SimpleObject) {
             o.game = this.game;
             await o.onCreate(...args);
@@ -21,14 +24,14 @@ export class SimpleObject extends EventTarget {
         return o;
     }
 
-    onCreate(...args) { }
+    onCreate(...args: any[]) { }
 
     onDestroy() {
         this.tick = false;
     }
 
-    get ticker() {
-        return this.game.app.ticker;
+    get ticker(): Ticker {
+        return (this.game as BaseGame).app.ticker;
     }
 
     #tick_enabled = false;
