@@ -2,7 +2,7 @@ import { SimpleObject } from "./simple-object";
 
 export class Delay extends SimpleObject {
 
-    timeoutHandle: number = -1;
+    timeoutHandle: any = -1;
 
     onCreate(callback: Function, seconds: number) {
         super.onCreate();
