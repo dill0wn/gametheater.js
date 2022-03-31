@@ -1,17 +1,16 @@
 {
   "name": "gametheater.js",
-  "version": "0.0.2",
+  "version": "0.3.0",
   "description": "",
   "type": "module",
   "main": "src/index.ts",
   "files": [
-    "dist"
+    "src"
   ],
   "scripts": {
     "generate-barrel": "npx barrelsby --directory src/ --delete",
     "test": "mocha -r test/jsdom-bootstrap.js",
-    "dev:install": "./scripts/yarn-link",
-    "prepublishOnly": "npm run build"
+    "dev:install": "./scripts/yarn-link"
   },
   "author": "",
   "license": "ISC",
