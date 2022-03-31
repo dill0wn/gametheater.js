@@ -1,13 +1,22 @@
 import { Delay } from "./delay";
-import { Container } from "pixi.js";
+import { Container, ObservablePoint } from "pixi.js";
 import { SimpleObject } from "./simple-object";
 
 export class GameObject extends SimpleObject {
     content: Container = new Container();
 
-    get position() {
+    get position(): ObservablePoint {
         return this.content.position;
     }
+
+    get x() { return this.content.x; }
+    set x(value: number) { this.content.x = value; }
+    
+    get y() { return this.content.y; }
+    set y(value: number) { this.content.y = value; }
+
+    get width() { return this.content.width; }
+    get height() { return this.content.height; }
 
     async onCreate(...args: any[]) {
         await super.onCreate();
@@ -15,17 +24,17 @@ export class GameObject extends SimpleObject {
 
     attach(child: GameObject | Container) {
         let cc: Container;
-        if(child instanceof GameObject) {
+        if (child instanceof GameObject) {
             cc = child.content;
         } else {
             cc = child;
         }
         this.content.addChild(cc);
     }
-    
+
     detach(child: GameObject | Container) {
         let cc: Container;
-        if(child instanceof GameObject) {
+        if (child instanceof GameObject) {
             cc = child.content;
         } else {
             cc = child;
@@ -33,7 +42,7 @@ export class GameObject extends SimpleObject {
         this.content.removeChild(cc);
     }
 
-    delay(callback: (...args:any[] ) => any, seconds: number) {
+    delay(callback: (...args: any[]) => any, seconds: number) {
         return this.create(Delay, callback, seconds);
     }
 }
