@@ -34,20 +34,20 @@ export class SimpleObject extends EventDispatcher {
         return (this.game as BaseGame).app.ticker;
     }
 
-    #tick_enabled = false;
+    _tick_enabled = false;
     set tick(val) {
-        if (this.#tick_enabled != val) {
+        if (this._tick_enabled != val) {
             if (val) {
                 this.ticker.add(this.onTick);
             } else {
                 this.ticker.remove(this.onTick);
             }
         }
-        this.#tick_enabled = val;
+        this._tick_enabled = val;
     }
 
     get tick() {
-        return this.#tick_enabled;
+        return this._tick_enabled;
     }
 
     onTick(delta: number) { }
