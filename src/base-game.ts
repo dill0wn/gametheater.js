@@ -9,16 +9,31 @@ export class BaseGame extends SimpleObject {
 
         this.game = this;
 
+        var game = document.querySelector('#game');
+
         this.app = new Application({
             width: window.innerWidth,
             height: window.innerHeight,
             antialias: false,
+            autoDensity: true,
+            // view: game,
         });
 
-        this.app.renderer.view.style.position = 'absolute';
+        var root = document.querySelector('#root');
+        if(root){
+            root.appendChild(this.app.view);
+        }
+
+        // this.app.renderer.view.style.width = "100%";
+        // this.app.renderer.view.style.height = "100%";
+        // this.app.renderer.view.style.position = 'absolute';
         this.app.ticker.add(this.onTick);
 
         this.attach();
+    }
+
+    async onCreate() {
+        await super.onCreate();
     }
 
     _bind() {
@@ -40,7 +55,6 @@ export class BaseGame extends SimpleObject {
     }
 
     attach() {
-        document.body.appendChild(this.app.view);
         window.addEventListener('resize', this.onResize);
         this.onResize();
     }
@@ -54,13 +68,13 @@ export class BaseGame extends SimpleObject {
     }
 
     onResize() {
-        this.app.renderer.view.style.width = "100%";
-        this.app.renderer.view.style.height = "100%";
-        this.app.renderer.resize(
-            this.app.renderer.view.clientWidth * window.devicePixelRatio,
-            this.app.renderer.view.clientHeight * window.devicePixelRatio
-        );
-        this.app.stage.scale.set(window.devicePixelRatio, window.devicePixelRatio);
+        // this.app.renderer.view.style.width = "100%";
+        // this.app.renderer.view.style.height = "100%";
+        // this.app.renderer.resize(
+        //     this.app.renderer.view.parentNode.clientWidth,
+        //     this.app.renderer.view.parentNode.clientHeight
+        // );
+        // this.app.stage.scale.set(window.devicePixelRatio, window.devicePixelRatio);
         
         console.log("game.onResize", {
             innerWidth: window.innerWidth,
@@ -75,5 +89,7 @@ export class BaseGame extends SimpleObject {
             offsetHeight: this.app.renderer.view.offsetHeight,
             devicePixelRatio: window.devicePixelRatio,
         });
+
+        this.dispatchEvent(new Event('resize'));
     }
 }

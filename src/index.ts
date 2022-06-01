@@ -9,3 +9,4 @@ export * from "./game-object";
 export * from "./random";
 export * from "./simple-object";
 export * from "./core/EventDispatcher";
+export * from "./utils/layout";

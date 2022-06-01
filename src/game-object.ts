@@ -45,4 +45,11 @@ export class GameObject extends SimpleObject {
     delay(callback: (...args: any[]) => any, seconds: number) {
         return this.create(Delay, callback, seconds);
     }
+
+    center() {
+        this.content.pivot.set(
+            Math.floor(this.width * 0.5),
+            Math.floor(this.height * 0.5),
+        )
+    }
 }

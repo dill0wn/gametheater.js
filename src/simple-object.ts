@@ -1,6 +1,7 @@
 import { Ticker } from "pixi.js";
-import { BaseGame } from "./base-game";
+import { Factory } from "./core/Factory";
 import { EventDispatcher } from "./core/EventDispatcher";
+import { BaseGame } from "./base-game";
 
 export class SimpleObject extends EventDispatcher {
 
@@ -13,14 +14,21 @@ export class SimpleObject extends EventDispatcher {
 
     _bind() { }
 
-    async create<T>(t: new () => T, ...args: any[]) {
+    public static async create<T>(t: new () => T, ...args: any[]) {
         const o = new t();
 
         if (o instanceof SimpleObject) {
-            o.game = this.game;
             await o.onCreate(...args);
         }
 
+        return o;
+    }
+
+    async create<T>(t: new () => T, ...args: any[]) {
+        const o = await SimpleObject.create(t, ...args);
+        if (o instanceof SimpleObject) {
+            o.game = this.game;
+        }
         return o;
     }
 
