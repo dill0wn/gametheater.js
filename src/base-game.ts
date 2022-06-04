@@ -7,7 +7,7 @@ export class BaseGame extends SimpleObject {
     constructor() {
         super();
 
-        var game = document.querySelector('#game');
+        // var game = document.querySelector('#game');
 
         this.app = new Application({
             width: window.innerWidth,
@@ -21,6 +21,10 @@ export class BaseGame extends SimpleObject {
         if(root){
             root.appendChild(this.app.view);
         }
+    }
+
+    async onCreate() {
+        await super.onCreate();
 
         // this.app.renderer.view.style.width = "100%";
         // this.app.renderer.view.style.height = "100%";
@@ -28,10 +32,6 @@ export class BaseGame extends SimpleObject {
         this.app.ticker.add(this.onTick);
 
         this.attach();
-    }
-
-    async onCreate() {
-        await super.onCreate();
     }
 
     _bind() {
