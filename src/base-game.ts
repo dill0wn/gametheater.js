@@ -7,8 +7,6 @@ export class BaseGame extends SimpleObject {
     constructor() {
         super();
 
-        this.game = this;
-
         var game = document.querySelector('#game');
 
         this.app = new Application({

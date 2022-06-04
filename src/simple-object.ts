@@ -1,11 +1,8 @@
 import { Ticker } from "pixi.js";
-import { Factory } from "./core/Factory";
 import { EventDispatcher } from "./core/EventDispatcher";
 import { BaseGame } from "./base-game";
 
 export class SimpleObject extends EventDispatcher {
-
-    game: BaseGame | null = null;
 
     constructor() {
         super();
@@ -26,9 +23,6 @@ export class SimpleObject extends EventDispatcher {
 
     async create<T>(t: new () => T, ...args: any[]) {
         const o = await SimpleObject.create(t, ...args);
-        if (o instanceof SimpleObject) {
-            o.game = this.game;
-        }
         return o;
     }
 
@@ -39,7 +33,7 @@ export class SimpleObject extends EventDispatcher {
     }
 
     get ticker(): Ticker {
-        return (this.game as BaseGame).app.ticker;
+        return Ticker.shared;
     }
 
     _tick_enabled = false;
