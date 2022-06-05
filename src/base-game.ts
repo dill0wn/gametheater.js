@@ -4,23 +4,22 @@ import { SimpleObject } from "./simple-object";
 export class BaseGame extends SimpleObject {
     app: Application;
 
-    constructor() {
+    constructor(mount = '#root') {
         super();
 
-        // var game = document.querySelector('#game');
-
-        this.app = new Application({
+        const options = {
             width: window.innerWidth,
             height: window.innerHeight,
             antialias: false,
             autoDensity: true,
-            // view: game,
-        });
+        };
 
-        var root = document.querySelector('#root');
-        if(root){
-            root.appendChild(this.app.view);
+        var view = document.querySelector(`${mount} canvas`);
+        if (view) {
+            options.view = view;
         }
+
+        this.app = new Application(options);
     }
 
     async onCreate() {
@@ -68,10 +67,10 @@ export class BaseGame extends SimpleObject {
     onResize() {
         // this.app.renderer.view.style.width = "100%";
         // this.app.renderer.view.style.height = "100%";
-        // this.app.renderer.resize(
-        //     this.app.renderer.view.parentNode.clientWidth,
-        //     this.app.renderer.view.parentNode.clientHeight
-        // );
+        this.app.renderer.resize(
+            this.app.renderer.view.parentNode.offsetWidth,
+            this.app.renderer.view.parentNode.offsetHeight
+        );
         // this.app.stage.scale.set(window.devicePixelRatio, window.devicePixelRatio);
         
         console.log("game.onResize", {
@@ -87,7 +86,5 @@ export class BaseGame extends SimpleObject {
             offsetHeight: this.app.renderer.view.offsetHeight,
             devicePixelRatio: window.devicePixelRatio,
         });
-
-        this.dispatchEvent(new Event('resize'));
     }
 }
