@@ -10,7 +10,7 @@ export class BaseGame extends SimpleObject {
         const options = {
             width: window.innerWidth,
             height: window.innerHeight,
-            antialias: false,
+            antialias: true,
             autoDensity: true,
         };
 
@@ -35,7 +35,7 @@ export class BaseGame extends SimpleObject {
 
     _bind() {
         super._bind();
-        this.onResize = this.onResize.bind(this);
+        this.onWindowResize = this.onWindowResize.bind(this);
         this.onTick = this.onTick.bind(this);
     }
 
@@ -52,19 +52,19 @@ export class BaseGame extends SimpleObject {
     }
 
     attach() {
-        window.addEventListener('resize', this.onResize);
-        this.onResize();
+        window.addEventListener('resize', this.onWindowResize);
+        this.onWindowResize();
     }
 
     detach() {
-        window.removeEventListener('resize', this.onResize)
+        window.removeEventListener('resize', this.onWindowResize)
     }
 
     onTick(delta: number) {
 
     }
 
-    onResize() {
+    onWindowResize() {
         // this.app.renderer.view.style.width = "100%";
         // this.app.renderer.view.style.height = "100%";
         this.app.renderer.resize(
@@ -86,5 +86,7 @@ export class BaseGame extends SimpleObject {
             offsetHeight: this.app.renderer.view.offsetHeight,
             devicePixelRatio: window.devicePixelRatio,
         });
+
+        this.dispatchEvent(new Event('resize'));
     }
 }
