@@ -1,4 +1,4 @@
-import { Application } from "pixi.js";
+import { Application, settings, SCALE_MODES } from "pixi.js";
 import { SimpleObject } from "./simple-object";
 
 export class BaseGame extends SimpleObject {
@@ -6,6 +6,9 @@ export class BaseGame extends SimpleObject {
 
     constructor(mount = '#root') {
         super();
+
+        settings.RESOLUTION = window.devicePixelRatio;
+        settings.SCALE_MODE = SCALE_MODES.NEAREST;
 
         const options = {
             width: window.innerWidth,
@@ -65,8 +68,12 @@ export class BaseGame extends SimpleObject {
     }
 
     onWindowResize() {
+
+        settings.RESOLUTION = window.devicePixelRatio;
+
         // this.app.renderer.view.style.width = "100%";
         // this.app.renderer.view.style.height = "100%";
+        // this.app.renderer.resolution = Math.floor(window.devicePixelRatio);
         this.app.renderer.resize(
             this.app.renderer.view.parentNode.offsetWidth,
             this.app.renderer.view.parentNode.offsetHeight
@@ -74,6 +81,7 @@ export class BaseGame extends SimpleObject {
         // this.app.stage.scale.set(window.devicePixelRatio, window.devicePixelRatio);
         
         console.log("game.onResize", {
+            resolution: this.app.renderer.resolution,
             innerWidth: window.innerWidth,
             innerHeight: window.innerHeight,
             stagewidth: this.app.stage.width,
