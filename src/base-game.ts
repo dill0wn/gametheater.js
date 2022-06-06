@@ -80,7 +80,7 @@ export class BaseGame extends SimpleObject {
         );
         // this.app.stage.scale.set(window.devicePixelRatio, window.devicePixelRatio);
         
-        console.log("game.onResize", {
+        this.log("game.onResize", {
             resolution: this.app.renderer.resolution,
             innerWidth: window.innerWidth,
             innerHeight: window.innerHeight,
