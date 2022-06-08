@@ -67,7 +67,7 @@ export class SimpleObject extends EventDispatcher {
         if(!SimpleObject._logger) {
             return (Logger.create() as Promise<Logger>).then((logger) =>{
                 SimpleObject._logger = logger as Logger;
-                logger.show();
+                // logger.show();
                 return logger;
             });
         }
@@ -97,6 +97,7 @@ export class Logger extends SimpleObject {
             pointer-events: none;
             z-index: 9999;
             width: 100%;
+            background-color: rgba(255, 255, 255, 0.25);
         }
         .log-line {
             overflow-wrap: break-word;
@@ -115,6 +116,8 @@ export class Logger extends SimpleObject {
 
         this.container = logframe;
         document.body.appendChild(this.container);
+
+        this.hide();
     }
 
     log(...args: any[]) {
