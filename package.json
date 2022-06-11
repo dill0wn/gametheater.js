@@ -11,9 +11,9 @@
   "scripts": {
     "build": "yarn build:esm && yarn build:cjs",
     "watch": "yarn watch:esm",
-    "build:esm": "tsc",
-    "watch:esm": "tsc --watch",
-    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
+    "build:esm": "yarn generate-barrel && tsc",
+    "watch:esm": "yarn generate-barrel && tsc --watch",
+    "build:cjs": "yarn generate-barrel && tsc --module commonjs --outDir dist/cjs",
     "generate-barrel": "npx barrelsby --directory src/ --delete",
     "test": "mocha -r test/jsdom-bootstrap.js",
     "dev:install": "./scripts/yarn-link"
