@@ -4,10 +4,14 @@ import { SimpleObject } from "../simple-object";
 export class KeyDownHandler extends SimpleObject {
     showAnswer: boolean = false;
     private _event?: string;
+    private _key?: string;
+    private _callback?: EventListener;
 
-    onCreate(event: string = 'keydown') {
+    onCreate(key: string, callback: EventListener) {
         super.onCreate();
-        this._event = event;
+        this._event = 'keydown';
+        this._key = key;
+        this._callback = callback;
         document.addEventListener(
             this._event,
             this,
@@ -24,8 +28,11 @@ export class KeyDownHandler extends SimpleObject {
     }
 
     handleEvent(ev: KeyboardEvent) {
-        console.log("THIS IS A TEST", {ev});
-        this.dispatchEvent(new KeyboardEvent(ev.type, ev));
+        if(ev.key == this._key) {
+            if (this._callback) {
+                this._callback(new KeyboardEvent(ev.type, ev));
+            }
+        }
     }
 }
 
