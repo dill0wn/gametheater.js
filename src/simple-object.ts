@@ -1,6 +1,5 @@
 import { Ticker } from "pixi.js";
 import { EventDispatcher } from "./core/EventDispatcher";
-import { BaseGame } from "./base-game";
 
 export class Factory {
 
@@ -86,6 +85,11 @@ export class SimpleObject extends EventDispatcher {
 export class Logger extends SimpleObject {
     container: HTMLDivElement;
 
+    constructor() {
+        super();
+        this.container = document.createElement('div');
+    }
+
     onCreate() {
         super.onCreate();
 
@@ -103,18 +107,8 @@ export class Logger extends SimpleObject {
             overflow-wrap: break-word;
         }
         `;
+        this.container.classList.add('log-container');
         document.body.appendChild(logstyle);
-
-        const logframe = document.createElement('div');
-        logframe.classList.add('log-container');
-        // logframe.style.position = 'absolute';
-        // logframe.style.top = '0';
-        // logframe.style.pointerEvents = 'none';
-        // logframe.style.zIndex = '99999';
-
-
-
-        this.container = logframe;
         document.body.appendChild(this.container);
 
         this.hide();
