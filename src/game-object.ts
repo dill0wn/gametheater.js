@@ -42,6 +42,14 @@ export class GameObject extends SimpleObject {
         this.content.removeChild(cc);
     }
 
+    show() {
+        this.content.renderable = true;
+    }
+    
+    hide() {
+        this.content.renderable = false;
+    }
+
     delay(callback: (...args: any[]) => any, seconds: number) {
         return this.create(Delay, callback, seconds);
     }
